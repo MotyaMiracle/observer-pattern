@@ -12,29 +12,32 @@ namespace observer_pattern
     {
         static void Main(string[] args)
         {
-            ConcreteObserver observer1 = new ConcreteObserver();
-            ConcreteObserver observer2 = new ConcreteObserver();
-            ConcreteSubject subject = new ConcreteSubject();
+            WeatherData subject = new WeatherData();
+            CurrentConditionsDisplay currentDisplay = new CurrentConditionsDisplay(subject);
+            subject.RegisterObserver(currentDisplay);
+            subject.SetMeasurements(80, 65, 30.4);
+            subject.SetMeasurements(82, 70, 29.2);
+            subject.SetMeasurements(78, 90, 29.2);
 
-            subject.RegisterObserver(observer1);
-            subject.SetState("Sunny");
+            //subject.RegisterObserver(observer1);
+            //subject.SetState("Sunny");
 
-            Console.WriteLine(observer1.GetCounter());
-            Console.WriteLine("Разрыв...");
+   
+            //Console.WriteLine("Разрыв...");
 
-            subject.RegisterObserver(observer2);
-            subject.SetState("Cloudy");
+            //subject.RegisterObserver(observer2);
+            //subject.SetState("Cloudy");
 
-            Console.WriteLine(observer1.GetCounter());
-            Console.WriteLine(observer2.GetCounter());
-            Console.WriteLine("Разрыв...");
+            //Console.WriteLine(observer1.GetCounter());
+            //Console.WriteLine(observer2.GetCounter());
+            //Console.WriteLine("Разрыв...");
 
-            subject.RemoveObserver(observer2);
-            subject.SetState("Rain with thunderstorm");
+            //subject.RemoveObserver(observer2);
+            //subject.SetState("Rain with thunderstorm");
 
-            Console.WriteLine(observer1.GetCounter());
-            Console.WriteLine(observer2.GetCounter());
-            Console.WriteLine("Разрыв...");
+            //Console.WriteLine(observer1.GetCounter());
+            //Console.WriteLine(observer2.GetCounter());
+            //Console.WriteLine("Разрыв...");
 
             Console.ReadKey();
         }

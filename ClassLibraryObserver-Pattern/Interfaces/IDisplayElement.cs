@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ClassLibraryObserver_Pattern.Interfaces
 {
-    public interface IObserver
+    interface IDisplayElement
     {
-        void Update(double temp, double humidity, double pressure);
+        void Display();
     }
 }

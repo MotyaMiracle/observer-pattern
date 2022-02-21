@@ -41,8 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConcreteObserver.cs" />
-    <Compile Include="ConcreteSubject.cs" />
+    <Compile Include="CurrentConditionsDisplay.cs" />
+    <Compile Include="WeatherData.cs" />
+    <Compile Include="Interfaces\IDisplayElement.cs" />
     <Compile Include="Interfaces\IObserver.cs" />
     <Compile Include="Interfaces\ISubject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
