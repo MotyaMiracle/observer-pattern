@@ -20,6 +20,7 @@ namespace observer_pattern
             subject.SetState("Sunny");
 
             Console.WriteLine(observer1.GetCounter());
+            Console.WriteLine(observer2.GetCounter());
             Console.WriteLine("Разрыв...");
 
             subject.RegisterObserver(observer2);
