@@ -12,33 +12,33 @@ namespace observer_pattern
     {
         static void Main(string[] args)
         {
-            WeatherData subject = new WeatherData();
-            CurrentConditionsDisplay currentDisplay = new CurrentConditionsDisplay(subject);
-            subject.RegisterObserver(currentDisplay);
-            subject.SetMeasurements(80, 65, 30.4);
-            subject.SetMeasurements(82, 70, 29.2);
-            subject.SetMeasurements(78, 90, 29.2);
+            WeatherData weatherData = new WeatherData();
 
-            //subject.RegisterObserver(observer1);
-            //subject.SetState("Sunny");
+            List<IDisplayElement> displays = new List<IDisplayElement>() {
+                new CurrentConditionsDisplay(),
+                new ForecastDisplay(),
+                new StatisticsDisplay()
+            };
 
-   
-            //Console.WriteLine("Разрыв...");
+            weatherData.RegisterObserver((CurrentConditionsDisplay)displays[0]);
+            weatherData.RegisterObserver((ForecastDisplay)displays[1]);
+            weatherData.RegisterObserver((StatisticsDisplay)displays[2]);
 
-            //subject.RegisterObserver(observer2);
-            //subject.SetState("Cloudy");
+            foreach (IDisplayElement observer in displays)
+                Console.WriteLine(observer.Display());
 
-            //Console.WriteLine(observer1.GetCounter());
-            //Console.WriteLine(observer2.GetCounter());
-            //Console.WriteLine("Разрыв...");
+            weatherData.NotifyObserver();
 
-            //subject.RemoveObserver(observer2);
-            //subject.SetState("Rain with thunderstorm");
-
-            //Console.WriteLine(observer1.GetCounter());
-            //Console.WriteLine(observer2.GetCounter());
-            //Console.WriteLine("Разрыв...");
-
+            foreach (IDisplayElement observer in displays)
+            {
+                Console.WriteLine(observer.Display());
+            }
+            weatherData.RemoveObserver((ForecastDisplay)displays[1]);
+            weatherData["maxtemperature"] = 666;
+            foreach (IDisplayElement observer in displays)
+            {
+                Console.WriteLine(observer.Display());
+            }
             Console.ReadKey();
         }
     }

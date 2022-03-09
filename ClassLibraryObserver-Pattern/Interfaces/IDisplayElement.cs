@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ClassLibraryObserver_Pattern.Interfaces
 {
-    interface IDisplayElement
+    public interface IDisplayElement
     {
-        void Display();
+        string Display();
     }
 }

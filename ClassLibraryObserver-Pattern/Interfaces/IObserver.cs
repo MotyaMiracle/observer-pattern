@@ -8,6 +8,6 @@ namespace ClassLibraryObserver_Pattern.Interfaces
 {
     public interface IObserver
     {
-        void Update(double temp, double humidity, double pressure);
+        void Update(Dictionary<string, int> intelligence);
     }
 }

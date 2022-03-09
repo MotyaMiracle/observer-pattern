@@ -8,47 +8,35 @@ namespace ClassLibraryObserver_Pattern.Interfaces
 {
     public class WeatherData : ISubject
     {
-        private double temperature;
-        private double humidity;
-        private double pressure;
-        private List<IObserver> observers = new List<IObserver>(); 
+        public WeatherData()
+        {
+            Random random = new Random();
+            foreach (string key in var) keys.Add(key, random.Next(1, 100));
+        }
+        private List<IObserver> observers = new List<IObserver>();
+        private Dictionary<string, int> keys = new Dictionary<string, int>();
+        private List<string> var = new List<string>() {"temperature","humidity","pressure","mintemperature",
+            "middletemperature","maxtemperature","shumidity","spressure","fweatherforecast","fhumidity","fpressure",
+            "ctemperature","chumidity","cpressure"};
         public void RegisterObserver(IObserver observer)
         {
             observers.Add(observer);
         }
         public void RemoveObserver(IObserver observer)
         {
-            observers.Remove(observer);
+            observers.RemoveAt(observers.IndexOf(observer));
         }
         public void NotifyObserver()
         {
-            foreach ( IObserver observer in observers)
+            foreach (IObserver observer in observers) observer.Update(keys);
+        }
+        public int this[string var]
+        {
+            set
             {
-                observer.Update(temperature, humidity, pressure);
+                keys[var] = value;
+                this.NotifyObserver();
             }
-        }
-        public void MeasurementsChanged()
-        {
-            NotifyObserver();
-        }
-        public void SetMeasurements(double temperature, double humidity, double pressure)
-        {
-            this.temperature = temperature;
-            this.humidity = humidity;
-            this.pressure = pressure;
-            MeasurementsChanged();
-        }
-        public double GetTemperature()
-        {
-            return temperature;
-        }
-        public double GetHumidity()
-        {
-            return humidity;
-        }
-        public double GetPressure()
-        {
-            return pressure;
         }
     }
 }

@@ -8,24 +8,18 @@ namespace ClassLibraryObserver_Pattern.Interfaces
 {
     public class CurrentConditionsDisplay : IObserver, IDisplayElement
     {
-        private double temperature;
-        private double humidity;
-        private ISubject WeatherData;
-
-        public CurrentConditionsDisplay(ISubject WeatherData)
+        private double ctemperature;
+        private double chumidity;
+        private double cpressure;
+        public string Display()
         {
-            this.WeatherData = WeatherData;
+            return "Погода сйчас: " + ctemperature + "C - температура; " + chumidity + " - влажность.";
         }
-
-        public void Update(double temperature, double humidity, double pressure)
+        public void Update(Dictionary<string, int> intelligence)
         {
-            this.temperature = temperature;
-            this.humidity = humidity;
-            Display();
-        }
-        public void Display()
-        {
-            Console.WriteLine("Current conditions: " + temperature + "C degrees and " + humidity + "% humidity");
+            ctemperature = intelligence["ctemperature"];
+            chumidity = intelligence["chumidity"];
+            cpressure = intelligence["cpressure"];
         }
     }
 }
